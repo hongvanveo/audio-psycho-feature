@@ -10,17 +10,20 @@ Co che:
 - Khi tach tin, chuong trinh so sanh do sai khac cua tung doan stego voi hai mo hinh tren.
 - Mo hinh nao co sai so nho hon se quyet dinh bit duoc trich xuat.
 
+Muc tieu cua lab nay la tao `cover.wav`, nhung thong diep vao `stego.wav`, va danh gia su thay doi giua hai file am thanh. Ham `extract` van duoc giu trong code de dung lai cho lab sau, nhung khong nam trong quy trinh thuc hanh va khong duoc checkwork su dung.
+
 Lenh mau trong container `sender`:
 
 ```bash
 cd ~/stego
 python3 generate_cover.py --out cover.wav
 python3 psycho_feature_stego.py embed --in cover.wav --out stego.wav --message samples/message.txt
-python3 psycho_feature_stego.py extract --cover cover.wav --stego stego.wav --out recovered.txt
 python3 analyze_audio.py --cover cover.wav --stego stego.wav
+cmp cover.wav stego.wav
 ```
 
-Luu y: day la dang tach tin can cover goc de so sanh mo hinh, nen `cover.wav` va `stego.wav` deu nen duoc chuyen sang receiver neu thuc hanh tach tin o receiver.
+Checkwork co 3 muc trong `instr_config/results.config`:
 
-Checkwork co 4 muc trong `instr_config/results.config`.
-
+- `cover_created`
+- `stego_created`
+- `audio_modified`

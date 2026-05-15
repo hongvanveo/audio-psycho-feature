@@ -41,20 +41,3 @@ if [ -s "$workdir/cover.wav" ] && [ -s "$workdir/stego.wav" ]; then
 else
     fail "AUDIO_MODIFIED" "cannot compare audio files"
 fi
-
-if [ -f "$workdir/psycho_feature_stego.py" ] && [ -s "$workdir/cover.wav" ] && [ -s "$workdir/stego.wav" ]; then
-    (cd "$workdir" && python3 psycho_feature_stego.py extract --cover cover.wav --stego stego.wav --out .pregrade_recovered.txt) >>"$dbg" 2>&1
-    if [ $? -eq 0 ] && [ -f "$workdir/samples/message.txt" ]; then
-        cmp -s "$workdir/.pregrade_recovered.txt" "$workdir/samples/message.txt"
-        if [ $? -eq 0 ]; then
-            pass "MESSAGE_RECOVERED"
-        else
-            fail "MESSAGE_RECOVERED" "recovered message differs"
-        fi
-    else
-        fail "MESSAGE_RECOVERED" "extract command failed"
-    fi
-else
-    fail "MESSAGE_RECOVERED" "script or audio missing"
-fi
-
