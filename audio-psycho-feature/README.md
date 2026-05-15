@@ -1,28 +1,33 @@
 # audio-psycho-feature
 
-Labtainer lab ve giau tin trong am thanh dua vao dac trung quan trong nhat va psychoacoustics.
+Lab nay yeu cau sinh vien thuc hien nhung tin vao audio dua tren dac trung quan trong nhat sau khi tu tao thong diep va sua mot doan code Python mau.
 
 Co che:
 
 - Am thanh duoc chia thanh cac doan `Si` cung kich thuoc.
 - Bit 1 duoc nhung bang cong thuc `S'i(n) = 0.99 * Si(n)`.
 - Bit 0 duoc nhung bang cong thuc `S'i(n) = 0.98 * Si(n) + Si(n-d)`.
-- Khi tach tin, chuong trinh so sanh do sai khac cua tung doan stego voi hai mo hinh tren.
-- Mo hinh nao co sai so nho hon se quyet dinh bit duoc trich xuat.
+- Qua trinh nhung tao ra file `stego.wav` co sai khac co kiem soat so voi file goc.
 
-Muc tieu cua lab nay la tao `cover.wav`, nhung thong diep vao `stego.wav`, va danh gia su thay doi giua hai file am thanh. Ham `extract` van duoc giu trong code de dung lai cho lab sau, nhung khong nam trong quy trinh thuc hanh va khong duoc checkwork su dung.
+Cau truc lab:
 
-Lenh mau trong container `sender`:
+- Lab chi dung 1 container duy nhat ten `audio-psycho-feature`.
+- Sinh vien thao tac trong thu muc `~/stego`.
+- File `embed_task.py` la file can sua de dien ten file audio va ten file thong diep.
+
+Luong thuc hanh:
 
 ```bash
 cd ~/stego
 python3 generate_cover.py --out cover.wav
-python3 psycho_feature_stego.py embed --in cover.wav --out stego.wav --message samples/message.txt
+nano message.txt
+nano embed_task.py
+python3 embed_task.py
 python3 analyze_audio.py --cover cover.wav --stego stego.wav
 cmp cover.wav stego.wav
 ```
 
-Checkwork co 3 muc trong `instr_config/results.config`:
+Checkwork co 3 muc:
 
 - `cover_created`
 - `stego_created`
