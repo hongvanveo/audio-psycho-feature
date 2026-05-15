@@ -99,8 +99,6 @@ def embed(args):
         stego[start:end] = array("h", changed)
 
     write_wav(args.out, params, stego)
-    mark("PASS_STEGO_CREATED")
-    mark("PASS_AUDIO_MODIFIED")
     print(f"capacity_segments={capacity}")
     print(f"embedded_bits={len(bits)}")
     print(f"wrote={args.out}")
